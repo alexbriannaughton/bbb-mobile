@@ -1,9 +1,9 @@
 import React, { useState } from "react";
 import { Alert, StyleSheet, View } from "react-native";
 import { Button, Input } from "react-native-elements";
-import { supabase } from "../lib/supabase";
+import { supabase } from "lib/supabase";
 
-export default function Auth() {
+export const AuthScreen = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
