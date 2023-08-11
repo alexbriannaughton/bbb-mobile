@@ -1,7 +1,7 @@
 import { useRouter } from "expo-router";
 import { useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import { Alert, StyleSheet, View } from "react-native";
+import { Alert, View } from "react-native";
 import { TextInput } from "react-native-paper";
 import {
   CustomButton,
@@ -42,7 +42,9 @@ export default function SignUp() {
       router.replace("/");
     } else {
       console.log(error);
-      Alert.alert("Login Error", error?.message);
+      if (error?.message) {
+        Alert.alert("Login Error", error?.message);
+      }
     }
   };
 

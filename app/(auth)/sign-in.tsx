@@ -39,7 +39,9 @@ export default function SignIn() {
       router.replace("/");
     } else {
       console.log(error);
-      Alert.alert("Login Error", error?.message);
+      if (error?.message) {
+        Alert.alert("Login Error", error?.message);
+      }
     }
   };
 
