@@ -1,7 +1,9 @@
-import { PALETTE } from "../../constants/palette";
+import { Entypo, Ionicons } from "@expo/vector-icons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Link, Tabs } from "expo-router";
+import React from "react";
 import { Pressable, useColorScheme } from "react-native";
+import { PALETTE } from "../../constants/palette";
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
@@ -26,7 +28,9 @@ export default function TabLayout() {
         name="index"
         options={{
           title: "Search",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <Entypo name="magnifying-glass" size={25} color={color} />
+          ),
           headerRight: () => (
             <Link href="/modal" asChild>
               <Pressable>
@@ -43,11 +47,31 @@ export default function TabLayout() {
           ),
         }}
       />
+        <Tabs.Screen
+          name="collections"
+          options={{
+            title: "Bathrooms",
+            tabBarIcon: ({ color }) => (
+              <FontAwesome name="bath" size={25} color={color} />
+            ),
+          }}
+        />
       <Tabs.Screen
         name="two"
         options={{
           title: "Me",
-          tabBarIcon: ({ color }) => <TabBarIcon name="code" color={color} />,
+          tabBarIcon: ({ color }) => (
+            <Entypo name="emoji-happy" size={25} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="settings"
+        options={{
+          title: "Settings",
+          tabBarIcon: ({ color }) => (
+            <Ionicons name="settings" size={25} color={color} />
+          ),
         }}
       />
     </Tabs>
