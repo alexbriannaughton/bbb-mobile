@@ -8,7 +8,7 @@ export default function TabOneScreen() {
   const { signOut, user } = useAuth();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
+      <Text style={styles.title}>Tab Ones</Text>
       <View
         style={styles.separator}
         lightColor="#eee"

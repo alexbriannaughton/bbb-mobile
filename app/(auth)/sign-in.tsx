@@ -7,7 +7,6 @@ import {
   TouchableOpacity,
   View,
 } from "react-native";
-import { Input } from "tamagui";
 import { useAuth } from "../context/auth-supabase";
 
 export default function SignIn() {
@@ -19,20 +18,22 @@ export default function SignIn() {
   return (
     <>
       <Stack.Screen options={{ title: "sign up", headerShown: false }} />
+            <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
 
       <View>
         <Text>Email</Text>
-        <Input
+        <TextInput
           placeholder="email"
           autoCapitalize="none"
           nativeID="email"
           onChangeText={(text) => {
             emailRef.current = text;
           }}
+          style={styles.textInput}
         />
       </View>
       <View>
-        <Text style={styles.label}>Passwordh</Text>
+        <Text style={styles.label}>Password</Text>
         <TextInput
           placeholder="password"
           secureTextEntry={true}
@@ -67,6 +68,7 @@ export default function SignIn() {
         >
           Click Here To Create A New Account
         </Text>
+      </View>
       </View>
     </>
   );
