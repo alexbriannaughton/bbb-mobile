@@ -8,6 +8,8 @@ import { useColorScheme } from "react-native";
 import { PaperProvider } from "react-native-paper";
 import theme from "../constants/theme";
 import { Provider, useAuth } from "./context/auth-supabase";
+import { PALETTE } from "../constants/palette";
+import { PAPER_THEME } from "../constants/paperTheme";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -55,7 +57,7 @@ function RootLayoutNav() {
   return (
     // <SafeAreaProvider>
     <ThemeProvider theme={theme}>
-      <PaperProvider>
+      <PaperProvider theme={PAPER_THEME}>
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="modal" options={{ presentation: "modal" }} />

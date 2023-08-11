@@ -1,28 +1,20 @@
-import { StyleSheet, View } from "react-native";
-import EditScreenInfo from "../../components/EditScreenInfo";
+import { StyleSheet } from "react-native";
+import { List } from "react-native-paper";
+import { ScreenWrapper } from "../../components";
 import { SText } from "../../components/SText";
 import { useAuth } from "../context/auth-supabase";
 
 export default function SettingsScreen() {
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   return (
-    <View style={styles.container}>
-      <SText
-        style={{
-          marginTop: 32,
-          marginBottom: 16,
-          fontWeight: "bold",
-          fontSize: 18,
-        }}
-      >
-        User Information
-      </SText>
-      <SText style={styles.title}>Tab Two</SText>
-      <View style={styles.separator} />
-      <EditScreenInfo path="app/(tabs)/two.tsx" />
-
-      <SText>{JSON.stringify(user, null, 2)}</SText>
-    </View>
+    <ScreenWrapper>
+      <SText onPress={() => signOut()}>Sign Out - {user?.email}</SText>
+      <List.Item
+        title="First Item"
+        description="Item description"
+        left={(props) => <List.Icon {...props} icon="folder" />}
+      />
+    </ScreenWrapper>
   );
 }
 
