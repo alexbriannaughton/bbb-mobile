@@ -1,11 +1,14 @@
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { DarkTheme, DefaultTheme , ThemeProvider} from "@react-navigation/native";
+import { ThemeProvider } from "@shopify/restyle";
+
 import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { Provider, useAuth } from "./context/auth-supabase";
+import theme from "../constants/theme";
+
 
 export { ErrorBoundary } from "expo-router";
 
@@ -52,7 +55,7 @@ function RootLayoutNav() {
   if (!authInitialized && !user) return null;
   return (
     <SafeAreaProvider>
-      <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
+      <ThemeProvider theme={theme}>
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="modal" options={{ presentation: "modal" }} />

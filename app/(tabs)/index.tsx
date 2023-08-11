@@ -1,21 +1,17 @@
-import { StyleSheet } from "react-native";
+import { StyleSheet, View } from "react-native";
 
+import { SText } from "@/components/SText";
 import EditScreenInfo from "../../components/EditScreenInfo";
-import { Text, View } from "../../components/Themed";
 import { useAuth } from "../context/auth-supabase";
 
 export default function TabOneScreen() {
   const { signOut, user } = useAuth();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab Ones</Text>
-      <View
-        style={styles.separator}
-        lightColor="#eee"
-        darkColor="rgba(255,255,255,0.1)"
-      />
+      <SText style={styles.title}>Tab Ones</SText>
+      <View style={styles.separator} />
       <EditScreenInfo path="app/(tabs)/index.tsx" />
-      <Text onPress={() => signOut()}>Sign Out - {user?.email}</Text>
+      <SText onPress={() => signOut()}>Sign Out - {user?.email}</SText>
     </View>
   );
 }

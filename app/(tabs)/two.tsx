@@ -1,12 +1,13 @@
-import { StyleSheet } from "react-native";
-import { Text, View } from "../../components/Themed";
+import EditScreenInfo from "@/components/EditScreenInfo";
+import { SText } from "@/components/SText";
+import { StyleSheet, View } from "react-native";
 import { useAuth } from "../context/auth-supabase";
 
 export default function TabTwoScreen() {
   const { user } = useAuth();
   return (
     <View style={styles.container}>
-      <Text
+      <SText
         style={{
           marginTop: 32,
           marginBottom: 16,
@@ -15,12 +16,12 @@ export default function TabTwoScreen() {
         }}
       >
         User Information
-      </Text>
-      {/* <Text style={styles.title}>Tab Two</Text>
-      <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/two.tsx" /> */}
+      </SText>
+      <SText style={styles.title}>Tab Two</SText>
+      <View style={styles.separator} />
+      <EditScreenInfo path="app/(tabs)/two.tsx" />
 
-      <Text>{JSON.stringify(user, null, 2)}</Text>
+      <SText>{JSON.stringify(user, null, 2)}</SText>
     </View>
   );
 }
