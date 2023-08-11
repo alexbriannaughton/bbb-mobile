@@ -65,7 +65,7 @@ export default function ForgotPassword() {
           )}
         </SView>
         <Spacer size="hs" />
-        <CustomButton onPress={handleSubmit(onSubmit)}>Login</CustomButton>
+        <CustomButton onPress={handleSubmit(onSubmit)}>Send Reset Instructions</CustomButton>
         <View style={{ marginTop: 32 }}>
           <SText
             variant="body"
