@@ -1,16 +1,17 @@
 import { Stack, useRouter } from "expo-router";
 import React, { useRef, useState } from "react";
 import { Controller, useForm } from "react-hook-form";
-import {
-  StyleSheet,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import { TextInput } from "react-native-paper";
 
-import { SText, SView, ScreenWrapper} from "../../components";
-import { CustomInput } from "../../components/CustomInput";
+import {
+  CustomButton,
+  CustomInput,
+  SText,
+  SView,
+  ScreenWrapper,
+  Spacer,
+} from "../../components";
 import { useAuth } from "../context/auth-supabase";
 
 export default function SignIn() {
@@ -37,6 +38,8 @@ export default function SignIn() {
     <ScreenWrapper>
       <Stack.Screen options={{ title: "sign up", headerShown: false }} />
       <SView style={{ flex: 1, justifyContent: "center" }}>
+        <SText textAlign="center" variant="header">Welcome Back...</SText>
+        <Spacer />
         {/* <SView>
           <Text>Email</Text>
           <TextInput
@@ -68,7 +71,7 @@ export default function SignIn() {
           />
           {errors.email && <SText variant="body">This is required.</SText>}
         </SView>
-        {/* <Spacer size="hs" /> */}
+        <Spacer size="hs" />
         <Controller
           control={control}
           rules={{
@@ -108,7 +111,8 @@ export default function SignIn() {
             style={styles.textInput}
           />
         </SView> */}
-        <TouchableOpacity
+        <Spacer />
+        <CustomButton
           onPress={async () => {
             const { data, error } = await signIn(
               emailRef.current,
@@ -121,17 +125,17 @@ export default function SignIn() {
               // Alert.alert("Login Error", resp.error?.message);
             }
           }}
-          style={styles.button}
         >
-          <Text style={styles.buttonText}>Login</Text>
-        </TouchableOpacity>
+          Login
+        </CustomButton>
         <View style={{ marginTop: 32 }}>
-          <Text
-            style={{ fontWeight: "500" }}
+          <SText
+          variant="body"
+          textAlign="right"
             onPress={() => router.push("/sign-up")}
           >
-            Click Here To Create A New Account
-          </Text>
+           Create A New Account
+          </SText>
         </View>
       </SView>
     </ScreenWrapper>

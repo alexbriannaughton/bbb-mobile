@@ -50,4 +50,4 @@ const Spacer = ({ size, row, width, height, style }: SpacerProps) => {
   );
 };
 
-export default Spacer;
+export { Spacer };

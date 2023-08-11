@@ -9,7 +9,7 @@ export const TEXT_VARIANTS = {
     // color: "body",
   },
   header: {
-      color: "header",
+      color: "textPrimary",
     fontSize: scaleFont(34),
     lineHeight: scaleHeight(42.5),
   },
@@ -19,7 +19,7 @@ export const TEXT_VARIANTS = {
     lineHeight: scaleHeight(40),
   },
   body: {
-    color: "body",
+    color: "textPrimary",
     fontSize: scaleFont(16),
     lineHeight: scaleHeight(24),
   },
