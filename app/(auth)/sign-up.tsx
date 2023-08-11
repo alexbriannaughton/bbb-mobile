@@ -1,13 +1,17 @@
+import { useRouter } from "expo-router";
+import { useRef, useState } from "react";
+import { Controller, useForm } from "react-hook-form";
+import { Alert, StyleSheet, View } from "react-native";
+import { TextInput } from "react-native-paper";
 import {
-  Text,
-  View,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-} from "react-native";
+  CustomButton,
+  CustomInput,
+  SText,
+  SView,
+  ScreenWrapper,
+  Spacer,
+} from "../../components";
 import { useAuth } from "../context/auth-supabase";
-import { Stack, useRouter } from "expo-router";
-import { useRef } from "react";
 
 export default function SignUp() {
   const { signUp } = useAuth();
@@ -17,103 +21,121 @@ export default function SignUp() {
   const passwordRef = useRef("");
   const userNameRef = useRef("");
 
+  const {
+    control,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    defaultValues: {
+      username: "",
+      email: "",
+      password: "",
+    },
+  });
+
+  const [isSecureEntry, setIsSecureEntry] = useState(true);
+
+  const onSubmit = async (formData: any) => {
+    const { email, password, username } = formData;
+    const { data, error } = await signUp(email, password, username);
+    if (data) {
+      router.replace("/");
+    } else {
+      console.log(error);
+      Alert.alert("Login Error", error?.message);
+    }
+  };
+
   return (
-    <>
-      <Stack.Screen options={{ title: "sign up", headerShown: false }} />
-      <View style={{ flex: 1, justifyContent: "center", alignItems: "center" }}>
-        <View>
-          <Text style={styles.label}>UserName</Text>
-          <TextInput
-            placeholder="Username"
-            autoCapitalize="none"
-            nativeID="userName"
-            onChangeText={(text) => {
-              userNameRef.current = text;
+    <ScreenWrapper>
+      <SView style={{ flex: 1, justifyContent: "center" }}>
+        <SText textAlign="center" variant="header">
+          Create Account
+        </SText>
+        <Spacer />
+        <SView>
+          <Controller
+            control={control}
+            rules={{
+              required: true,
             }}
-            style={styles.textInput}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <CustomInput
+                label="username"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                autoCapitalize="none"
+              />
+            )}
+            name="username"
           />
-        </View>
-        <View>
-          <Text style={styles.label}>Email</Text>
-          <TextInput
-            placeholder="email"
-            autoCapitalize="none"
-            nativeID="email"
-            onChangeText={(text) => {
-              emailRef.current = text;
+          {errors.username?.type === "required" && (
+            <SText variant="error">This is required.</SText>
+          )}
+        </SView>
+        <Spacer size="hs" />
+        <SView>
+          <Controller
+            control={control}
+            rules={{
+              required: true,
             }}
-            style={styles.textInput}
+            render={({ field: { onChange, onBlur, value } }) => (
+              <CustomInput
+                label="email"
+                onBlur={onBlur}
+                onChangeText={onChange}
+                value={value}
+                autoCapitalize="none"
+              />
+            )}
+            name="email"
           />
-        </View>
-        <View>
-          <Text style={styles.label}>Password</Text>
-          <TextInput
-            placeholder="password"
-            secureTextEntry={true}
-            nativeID="password"
-            onChangeText={(text) => {
-              passwordRef.current = text;
-            }}
-            style={styles.textInput}
-          />
-        </View>
-
-        <TouchableOpacity
-          onPress={async () => {
-            const { data, error } = await signUp(
-              emailRef.current,
-              passwordRef.current,
-              userNameRef.current
-            );
-            if (data) {
-              router.replace("/");
-            } else {
-              console.log(error);
-              // Alert.alert("Login Error", resp.error?.message);
-            }
+          {errors.email?.type === "required" && (
+            <SText variant="error">This is required.</SText>
+          )}
+        </SView>
+        <Spacer size="hs" />
+        <Controller
+          control={control}
+          rules={{
+            maxLength: 100,
+            required: true,
           }}
-          style={styles.button}
-        >
-          <Text style={styles.buttonText}>Create Account</Text>
-        </TouchableOpacity>
+          render={({ field: { onChange, onBlur, value } }) => (
+            <CustomInput
+              label="password"
+              onBlur={onBlur}
+              onChangeText={onChange}
+              value={value}
+              secureTextEntry={isSecureEntry}
+              right={
+                <TextInput.Icon
+                  icon={isSecureEntry ? "eye" : "eye-off"}
+                  onPressIn={() => {
+                    setIsSecureEntry(!isSecureEntry);
+                  }}
+                />
+              }
+            />
+          )}
+          name="password"
+        />
+        {errors.password && <SText variant="error">This is required.</SText>}
 
+        <Spacer />
+        <CustomButton onPress={handleSubmit(onSubmit)}>Sign Up</CustomButton>
         <View style={{ marginTop: 32 }}>
-          <Text
-            style={{ fontWeight: "500" }}
-            onPress={() => router.replace("/sign-in")}
+          <SText
+            variant="body"
+            textAlign="center"
+            onPress={() => router.push("/sign-in")}
           >
-            Click Here To Return To Sign In Page
-          </Text>
+            Return to Sign In
+          </SText>
         </View>
-      </View>
-    </>
+      </SView>
+    </ScreenWrapper>
   );
 }
-
-const styles = StyleSheet.create({
-  label: {
-    marginBottom: 4,
-    color: "#455fff",
-  },
-  textInput: {
-    width: 250,
-    borderWidth: 1,
-    borderRadius: 4,
-    borderColor: "#455fff",
-    paddingHorizontal: 8,
-    paddingVertical: 4,
-    marginBottom: 16,
-  },
-  button: {
-    backgroundColor: "blue",
-    padding: 10,
-    width: 250,
-    borderRadius: 5,
-    marginTop: 16,
-  },
-  buttonText: {
-    color: "white",
-    textAlign: "center",
-    fontSize: 16,
-  },
-});

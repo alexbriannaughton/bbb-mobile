@@ -1,6 +1,4 @@
-import { DEFAULT_FONT_ONE } from "./defaultFonts";
-import { scaleFont, scaleHeight, scaleWidth } from "./layout";
-import { PALETTE } from "./palette";
+import { scaleFont, scaleHeight } from "./layout";
 
 export const TEXT_VARIANTS = {
   defaults: {
@@ -9,7 +7,7 @@ export const TEXT_VARIANTS = {
     // color: "body",
   },
   header: {
-      color: "textPrimary",
+    color: "textPrimary",
     fontSize: scaleFont(34),
     lineHeight: scaleHeight(42.5),
   },
@@ -23,5 +21,9 @@ export const TEXT_VARIANTS = {
     fontSize: scaleFont(16),
     lineHeight: scaleHeight(24),
   },
-  
+  error: {
+    color: "error",
+    fontSize: scaleFont(14),
+    lineHeight: scaleHeight(20),
+  },
 };

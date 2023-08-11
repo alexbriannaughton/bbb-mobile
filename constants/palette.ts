@@ -5,6 +5,7 @@ export const PALETTE = {
   //text
   textPrimary: COLORS.WHITE,
   textSecondary: COLORS.GRAY9,
+  error: COLORS.red9,
   
   //blue
   bluePrimary: COLORS.blue4,

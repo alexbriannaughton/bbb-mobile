@@ -1,7 +1,8 @@
+import { Session, User } from "@supabase/supabase-js";
 import { useRootNavigation, useRouter, useSegments } from "expo-router";
 import React, { useContext, useEffect, useState } from "react";
+import { Alert } from "react-native";
 import { supabase } from "../lib/supabase-service";
-import { Session, User } from "@supabase/supabase-js";
 
 // Define the AuthContextValue interface
 interface SignInResponse {
@@ -14,10 +15,19 @@ interface SignOutResponse {
   data: {} | undefined;
 }
 
+interface ResetResponse {
+  error: any | undefined;
+  data: boolean | undefined;
+}
+
 interface AuthContextValue {
   signIn: (e: string, p: string) => Promise<SignInResponse>;
   signUp: (e: string, p: string, n: string) => Promise<SignInResponse>;
   signOut: () => Promise<SignOutResponse>;
+  sendPasswordResetEmail: (
+    e: string,
+    cb?: VoidFunction
+  ) => Promise<ResetResponse>;
   user: User | null | undefined;
   authInitialized: boolean;
 }
@@ -185,6 +195,32 @@ export function Provider(props: ProviderProps) {
     }
   };
 
+  const sendPasswordResetEmail = async (
+    email: string,
+    onEmailSent: VoidFunction = () => {}
+  ): Promise<ResetResponse> => {
+    try {
+      const { error } = await supabase.auth.resetPasswordForEmail(email);
+      if (error) throw error;
+      Alert.alert(
+        "Email Sent",
+        `A password reset email has been sent to ${email}`,
+        [
+          {
+            text: "Ok",
+            onPress: () => {
+              onEmailSent();
+            },
+          },
+        ],
+        { cancelable: false }
+      );
+      return { error: undefined, data: true };
+    } catch (error) {
+      return { error, data: undefined };
+    }
+  };
+
   useProtectedRoute(user);
 
   return (
@@ -193,6 +229,7 @@ export function Provider(props: ProviderProps) {
         signIn: login,
         signOut: logout,
         signUp: createAcount,
+        sendPasswordResetEmail: sendPasswordResetEmail,
         user,
         authInitialized,
       }}
