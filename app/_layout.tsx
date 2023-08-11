@@ -5,10 +5,9 @@ import { useFonts } from "expo-font";
 import { SplashScreen, Stack } from "expo-router";
 import { useEffect } from "react";
 import { useColorScheme } from "react-native";
-import { SafeAreaProvider } from "react-native-safe-area-context";
-import { Provider, useAuth } from "./context/auth-supabase";
+import { PaperProvider } from "react-native-paper";
 import theme from "../constants/theme";
-
+import { Provider, useAuth } from "./context/auth-supabase";
 
 export { ErrorBoundary } from "expo-router";
 
@@ -54,13 +53,15 @@ function RootLayoutNav() {
 
   if (!authInitialized && !user) return null;
   return (
-    <SafeAreaProvider>
-      <ThemeProvider theme={theme}>
+    // <SafeAreaProvider>
+    <ThemeProvider theme={theme}>
+      <PaperProvider>
         <Stack screenOptions={{ headerShown: false }}>
           <Stack.Screen name="(tabs)" />
           <Stack.Screen name="modal" options={{ presentation: "modal" }} />
         </Stack>
-      </ThemeProvider>
-    </SafeAreaProvider>
+      </PaperProvider>
+    </ThemeProvider>
+    // </SafeAreaProvider>
   );
 }

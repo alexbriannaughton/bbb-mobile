@@ -1,4 +1,4 @@
-import { PALETTE } from "@/constants/palette";
+import { PALETTE } from "../../constants/palette";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
 import { Link, Tabs } from "expo-router";
 import { Pressable, useColorScheme } from "react-native";

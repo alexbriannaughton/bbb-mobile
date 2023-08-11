@@ -1,5 +1,5 @@
-import { SPACING } from "../../constants/spacing";
 import { scaleHeight, scaleWidth } from "../../constants/layout";
+import { SPACING } from "../../constants/spacing";
 import { SView } from "../SView";
 
 const SIZES = SPACING;

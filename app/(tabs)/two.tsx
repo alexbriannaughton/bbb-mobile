@@ -1,5 +1,5 @@
-import EditScreenInfo from "@/components/EditScreenInfo";
-import { SText } from "@/components/SText";
+import EditScreenInfo from "../../components/EditScreenInfo";
+import { SText } from "../../components/SText";
 import { StyleSheet, View } from "react-native";
 import { useAuth } from "../context/auth-supabase";
 
