@@ -9,28 +9,7 @@ export default function SettingsScreen() {
   return (
     <ScreenWrapper>
       <SText onPress={() => signOut()}>Sign Out - {user?.email}</SText>
-      <List.Item
-        title="First Item"
-        description="Item description"
-        left={(props) => <List.Icon {...props} icon="folder" />}
-      />
+      <SText>hey from settings</SText>
     </ScreenWrapper>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: "center",
-    // justifyContent: "center",
-  },
-  title: {
-    fontSize: 20,
-    fontWeight: "bold",
-  },
-  separator: {
-    marginVertical: 30,
-    height: 1,
-    width: "80%",
-  },
-});

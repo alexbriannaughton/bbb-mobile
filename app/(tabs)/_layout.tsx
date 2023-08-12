@@ -27,9 +27,9 @@ export default function TabLayout() {
       <Tabs.Screen
         name="index"
         options={{
-          title: "Search",
+          title: "Me AKA Index",
           tabBarIcon: ({ color }) => (
-            <Entypo name="magnifying-glass" size={25} color={color} />
+            <Entypo name="emoji-happy" size={25} color={color} />
           ),
           headerRight: () => (
             <Link href="/modal" asChild>
@@ -47,21 +47,21 @@ export default function TabLayout() {
           ),
         }}
       />
-        <Tabs.Screen
-          name="collections"
-          options={{
-            title: "Bathrooms",
-            tabBarIcon: ({ color }) => (
-              <FontAwesome name="bath" size={25} color={color} />
-            ),
-          }}
-        />
       <Tabs.Screen
-        name="two"
+        name="bathroom"
         options={{
-          title: "Me",
+          title: "Bathrooms",
           tabBarIcon: ({ color }) => (
-            <Entypo name="emoji-happy" size={25} color={color} />
+            <FontAwesome name="bath" size={25} color={color} />
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="search"
+        options={{
+          title: "search",
+          tabBarIcon: ({ color }) => (
+            <Entypo name="magnifying-glass" size={25} color={color} />
           ),
         }}
       />
