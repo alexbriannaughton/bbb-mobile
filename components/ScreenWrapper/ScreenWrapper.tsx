@@ -11,7 +11,7 @@ const ScreenWrapper = (props: ScreenWrapperProps) => {
       paddingTop={"none"}
       backgroundColor="blueSecondary"
       {...props}
-      paddingHorizontal="wm"
+      paddingHorizontal="wxs"
     />
   );
 };

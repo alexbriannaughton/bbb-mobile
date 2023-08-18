@@ -1,19 +1,15 @@
-import { Entypo, Ionicons } from "@expo/vector-icons";
+import { COLORS } from "@/constants/colors";
+import { scaleHeight, scaleWidth } from "@/constants/layout";
+import { Entypo } from "@expo/vector-icons";
 import FontAwesome from "@expo/vector-icons/FontAwesome";
-import { Link, Tabs } from "expo-router";
+import { Tabs } from "expo-router";
 import React from "react";
-import { Pressable, useColorScheme } from "react-native";
+import { useColorScheme } from "react-native";
 import { PALETTE } from "../../constants/palette";
 
 /**
  * You can explore the built-in icon families and icons on the web at https://icons.expo.fyi/
  */
-function TabBarIcon(props: {
-  name: React.ComponentProps<typeof FontAwesome>["name"];
-  color: string;
-}) {
-  return <FontAwesome size={28} style={{ marginBottom: -3 }} {...props} />;
-}
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
@@ -21,56 +17,48 @@ export default function TabLayout() {
   return (
     <Tabs
       screenOptions={{
-        tabBarActiveTintColor: PALETTE.blueSecondary,
+        tabBarActiveTintColor: PALETTE.bluePrimary,
+        tabBarStyle: {
+          backgroundColor: COLORS.BLACK,
+   
+        },
+        tabBarLabelStyle: {
+          fontFamily: "SpaceMono",
+        },
+       
       }}
     >
       <Tabs.Screen
-        name="index"
+        name="(search)"
         options={{
-          title: "Me AKA Index",
+          title: "Search",
+          headerShown: false,
           tabBarIcon: ({ color }) => (
-            <Entypo name="emoji-happy" size={25} color={color} />
-          ),
-          headerRight: () => (
-            <Link href="/modal" asChild>
-              <Pressable>
-                {({ pressed }) => (
-                  <FontAwesome
-                    name="plus"
-                    size={25}
-                    color={PALETTE.bluePrimary}
-                    style={{ marginRight: 15, opacity: pressed ? 0.5 : 1 }}
-                  />
-                )}
-              </Pressable>
-            </Link>
+            <Entypo
+              name="magnifying-glass"
+              size={scaleWidth(20)}
+              color={color}
+            />
           ),
         }}
       />
       <Tabs.Screen
-        name="bathroom"
+        name="(bathrooms)"
         options={{
-          title: "Bathrooms",
+          title: "My Bathrooms",
+          headerShown: false,
           tabBarIcon: ({ color }) => (
-            <FontAwesome name="bath" size={25} color={color} />
+            <FontAwesome name="bath" size={scaleWidth(20)} color={color} />
           ),
         }}
       />
       <Tabs.Screen
-        name="search"
+        name="(profile)"
         options={{
-          title: "search",
+          title: "Profile",
+          headerShown: false,
           tabBarIcon: ({ color }) => (
-            <Entypo name="magnifying-glass" size={25} color={color} />
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="settings"
-        options={{
-          title: "Settings",
-          tabBarIcon: ({ color }) => (
-            <Ionicons name="settings" size={25} color={color} />
+            <Entypo name="emoji-happy" size={scaleWidth(20)} color={color} />
           ),
         }}
       />

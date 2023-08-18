@@ -2,6 +2,9 @@
   "expo": {
     "name": "bbb-mobile",
     "slug": "bbb-mobile",
+    "experiments": {
+      "tsconfigPaths": true
+    },
     "scheme": "bbb-mobile",
     "version": "1.0.0",
     "orientation": "portrait",
@@ -12,9 +15,7 @@
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
     },
-    "assetBundlePatterns": [
-      "**/*"
-    ],
+    "assetBundlePatterns": ["**/*"],
     "ios": {
       "supportsTablet": true
     },
@@ -38,8 +39,6 @@
     "updates": {
       "url": "https://u.expo.dev/3d0767c1-dfc0-429b-89f9-05dc47c08738"
     },
-    "plugins": [
-      "expo-router"
-    ]
+    "plugins": ["expo-router"]
   }
 }

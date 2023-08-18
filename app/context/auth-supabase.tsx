@@ -1,5 +1,10 @@
 import { Session, User } from "@supabase/supabase-js";
-import { useRootNavigation, useRouter, useSegments } from "expo-router";
+import {
+  router,
+  useRootNavigationState,
+  useRouter,
+  useSegments,
+} from "expo-router";
 import React, { useContext, useEffect, useState } from "react";
 import { Alert } from "react-native";
 import { supabase } from "../lib/supabase-service";
@@ -30,6 +35,7 @@ interface AuthContextValue {
   ) => Promise<ResetResponse>;
   user: User | null | undefined;
   authInitialized: boolean;
+  segments: any;
 }
 
 // Define the Provider component
@@ -43,39 +49,22 @@ const AuthContext = React.createContext<AuthContextValue | undefined>(
 );
 
 export function Provider(props: ProviderProps) {
-  const [user, setAuth] = React.useState<User | null | undefined>(null);
+  const [user, setAuth] = React.useState<User | null>(null);
   const [session, setSession] = useState<Session | null>(null);
-
   const [authInitialized, setAuthInitialized] = React.useState<boolean>(false);
 
+  const segments = useSegments();
+
   // This hook will protect the route access based on user authentication.
-  const useProtectedRoute = (user: User | null | undefined) => {
-    const segments = useSegments();
+  const useProtectedRoute = (user: User | null) => {
     const router = useRouter();
 
     // checking that navigation is all good;
-    const [isNavigationReady, setNavigationReady] = useState(false);
-    const rootNavigation = useRootNavigation();
+    const navigationState = useRootNavigationState();
 
     useEffect(() => {
-      const unsubscribe = rootNavigation?.addListener("state", (event) => {
-        setNavigationReady(true);
-      });
-      return function cleanup() {
-        if (unsubscribe) {
-          unsubscribe();
-        }
-      };
-    }, [rootNavigation]);
-
-    React.useEffect(() => {
-      if (!isNavigationReady) {
-        return;
-      }
-
+      if (!navigationState?.key || !authInitialized) return;
       const inAuthGroup = segments[0] === "(auth)";
-
-      if (!authInitialized) return;
 
       if (
         // If the user is not signed in and the initial segment is not anything in the auth group.
@@ -83,35 +72,22 @@ export function Provider(props: ProviderProps) {
         !inAuthGroup
       ) {
         // Redirect to the sign-in page.
-        router.push("/sign-in");
+        router.replace("/sign-in");
       } else if (user && inAuthGroup) {
         // Redirect away from the sign-in page.
-        router.push("/");
+        router.replace("/(tabs)/(search)/search");
       }
-    }, [user, segments, authInitialized, isNavigationReady]);
+    }, [user, segments, authInitialized, navigationState?.key]);
   };
 
   useEffect(() => {
-    (async () => {
-      const { data, error } = await supabase.auth.getSession();
-      setSession(data.session);
-      setAuth(data.session?.user);
-      const { data: authListener } = supabase.auth.onAuthStateChange(
-        async (event, session) => {
-          console.log(`Supabase auth event: ${event}`, session);
-          setSession(session);
-          setAuth(session?.user);
-
-          if (!authInitialized) {
-            setAuthInitialized(true);
-          }
-        }
-      );
-
-      return () => {
-        authListener!.subscription.unsubscribe();
-      };
-    })();
+    if (authInitialized) return;
+    supabase.auth.onAuthStateChange((event, session) => {
+      console.log("got user", session?.user?.email);
+      setAuthInitialized(true);
+      setAuth(session?.user || null);
+      session?.user?.email && router.replace("/(tabs)/(search)/search");
+    });
   }, []);
 
   /**
@@ -232,6 +208,7 @@ export function Provider(props: ProviderProps) {
         sendPasswordResetEmail: sendPasswordResetEmail,
         user,
         authInitialized,
+        segments: segments,
       }}
     >
       {props.children}
