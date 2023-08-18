@@ -1,6 +1,6 @@
 import { TouchableOpacity } from "react-native";
 import { Button, ButtonProps } from "react-native-paper";
-import { SText, StextProps } from "..";
+import { SText, StextProps } from "../../components/SText";
 import { PALETTE } from "../../constants/palette";
 
 interface CustomButtonProps extends ButtonProps {

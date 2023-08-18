@@ -4,14 +4,12 @@ import { Controller, useForm } from "react-hook-form";
 import { Alert, View } from "react-native";
 import { TextInput } from "react-native-paper";
 
-import {
-  CustomButton,
-  CustomInput,
-  SText,
-  SView,
-  ScreenWrapper,
-  Spacer,
-} from "../../components";
+import { ScreenWrapper } from "../../components/ScreenWrapper";
+import { CustomButton } from "../../components/CustomButton";
+import { CustomInput } from "../../components/CustomInput";
+import { SText } from "../../components/SText";
+import { Spacer } from "../../components/Spacer";
+import { SView } from "../../components/SView";
 import { useAuth } from "../context/auth-supabase";
 
 export default function SignIn() {

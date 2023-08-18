@@ -1,5 +1,7 @@
 import { Stack, useRouter } from "expo-router";
-import { ScreenWrapper, Spacer } from "../../../components";
+import {  Spacer } from "../../../components/Spacer";
+import { ScreenWrapper } from "../../../components/ScreenWrapper";
+
 import { useAuth } from "../../context/auth-supabase";
 import { supabase } from "../../lib/supabase-service";
 // @ts-ignore

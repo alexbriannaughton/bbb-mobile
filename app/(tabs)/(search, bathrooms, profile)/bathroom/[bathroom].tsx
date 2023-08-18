@@ -1,6 +1,8 @@
 import { Stack, useRouter, useSearchParams } from "expo-router";
 import { useEffect, useState } from "react";
-import { SText, ScreenWrapper } from "../../../../components";
+import { SText } from "../../../../components/SText";
+import { ScreenWrapper } from "../../../../components/ScreenWrapper";
+
 import { supabase } from "../../../lib/supabase-service";
 
 export default function ImageDetail() {

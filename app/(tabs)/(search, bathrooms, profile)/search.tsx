@@ -1,7 +1,8 @@
-import { COLORS } from "@/constants/colors";
+import { SView } from "../../../components/SView";
 import { Stack } from "expo-router";
-import { ScreenWrapper } from "../../../components";
-import { SText } from "../../../components/SText";
+import React from "react";
+import MapView from "react-native-maps";
+import { ScreenWrapper } from "../../../components/ScreenWrapper";
 import { useAuth } from "../../context/auth-supabase";
 
 export default function SearchScreen() {
@@ -12,12 +13,13 @@ export default function SearchScreen() {
         options={{
           headerShown: true,
           title: "Search",
-        
         }}
       />
       <ScreenWrapper>
         <Stack.Screen />
-        <SText>hey from search screen</SText>
+        <SView flex={1}>
+          <MapView style={{ width: "100%", height: "100%" }} />
+        </SView>
       </ScreenWrapper>
     </>
   );

@@ -2,7 +2,8 @@ import { useSegments } from "expo-router";
 import { useCallback } from "react";
 import { FlatList, StyleSheet } from "react-native";
 import { Avatar, Card, IconButton } from "react-native-paper";
-import { SText, Spacer } from "../../../../components";
+import { SText } from "../../../../components/SText";
+import { Spacer } from "../../../../components/Spacer";
 
 export default function MyTaskList({
   files,

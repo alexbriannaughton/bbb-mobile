@@ -1,5 +1,5 @@
 import { Stack } from "expo-router";
-import { ScreenWrapper } from "../../../components";
+import { ScreenWrapper } from "../../../components/ScreenWrapper";
 import { SText } from "../../../components/SText";
 import { useAuth } from "../../context/auth-supabase";
 
