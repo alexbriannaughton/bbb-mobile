@@ -44,7 +44,7 @@ export default function SignIn() {
   };
 
   return (
-    <ScreenWrapper>
+    <ScreenWrapper backgroundColor="bgFive" paddingHorizontal="wm">
       <Stack.Screen options={{ title: "sign up", headerShown: false }} />
       <SView style={{ flex: 1, justifyContent: "center" }}>
         <SText textAlign="center" variant="header">

@@ -48,7 +48,7 @@ export default function SignUp() {
   };
 
   return (
-    <ScreenWrapper>
+    <ScreenWrapper backgroundColor="bgFive" paddingHorizontal="wm">
       <SView style={{ flex: 1, justifyContent: "center" }}>
         <SText textAlign="center" variant="header">
           Create Account
