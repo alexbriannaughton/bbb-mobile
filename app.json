@@ -1,3 +1,4 @@
+
 {
   "expo": {
     "name": "bbb-mobile",
@@ -25,7 +26,12 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "package": "com.bbb.dev"
+      "package": "com.bbb.dev",
+      "config": {
+        "googleMaps": {
+          "apiKey": process.env.GOOGLE_MAPS_API_KEY_ANDROID
+        }
+      }
     },
     "web": {
       "favicon": "./assets/images/favicon.png"
