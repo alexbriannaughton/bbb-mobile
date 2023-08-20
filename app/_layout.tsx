@@ -13,6 +13,9 @@ import { Provider, useAuth } from "./context/auth-supabase";
 
 export { ErrorBoundary } from "expo-router";
 
+import "expo-dev-client";
+
+
 export const unstable_settings = {
   // Ensure that reloading on `/modal` keeps a back button present.
   initialRouteName: "(tabs)/(search)/search",

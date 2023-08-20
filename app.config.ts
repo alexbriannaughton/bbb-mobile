@@ -1,6 +1,6 @@
 export default {
   expo: {
-    name: "bbb-mobile",
+    name: "Better Bathroom Bureau",
     slug: "bbb-mobile",
     experiments: {
       tsconfigPaths: true,
@@ -49,6 +49,15 @@ export default {
     updates: {
       url: "https://u.expo.dev/3d0767c1-dfc0-429b-89f9-05dc47c08738",
     },
-    plugins: ["expo-router"],
+    plugins: [
+      ["expo-router"],
+      [
+        "expo-location",
+        {
+          locationAlwaysAndWhenInUsePermission:
+            "Allow ${PRODUCT_NAME} to use your location.",
+        },
+      ],
+    ],
   },
 };

@@ -12,6 +12,15 @@
       "distribution": "internal",
       "channel": "preview"
     },
+    "development-simulator": {
+      "developmentClient": true,
+      "distribution": "internal",
+      "ios": {
+        "simulator": true,
+        "resourceClass": "m1-medium"
+      },
+      "channel": "development-simulator"
+    },
     "production": {
       "channel": "production"
     }
