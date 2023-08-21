@@ -1,3 +1,5 @@
+import "dotenv/config";
+
 export default {
   expo: {
     name: "Better Bathroom Bureau",
@@ -10,8 +12,6 @@ export default {
     orientation: "portrait",
     icon: "./assets/images/icon.png",
     userInterfaceStyle: "light",
-    runtimeVersion: "sdkVersion",
-
     splash: {
       image: "./assets/images/splash.png",
       resizeMode: "contain",
