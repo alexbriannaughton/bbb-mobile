@@ -10,6 +10,8 @@ export default {
     orientation: "portrait",
     icon: "./assets/images/icon.png",
     userInterfaceStyle: "light",
+    runtimeVersion: "sdkVersion",
+
     splash: {
       image: "./assets/images/splash.png",
       resizeMode: "contain",

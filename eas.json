@@ -18,9 +18,10 @@
     "development-simulator": {
       "developmentClient": true,
       "distribution": "internal",
+      "channel": "development-simulator",
       "ios": {
         "simulator": true,
-        "resourceClass": "mfi-medium"
+        "resourceClass": "m-medium"
       }
     },
     "production": {
