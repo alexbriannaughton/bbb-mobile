@@ -2,13 +2,13 @@ import "dotenv/config";
 
 export default {
   expo: {
-    name: "Better Bathroom Bureau",
+    name: "bbb-mobile",
     slug: "bbb-mobile",
     experiments: {
       tsconfigPaths: true,
     },
     scheme: "bbb-mobile",
-    version: "1.0.0",
+    version: "1.0.1",
     orientation: "portrait",
     icon: "./assets/images/icon.png",
     userInterfaceStyle: "light",
