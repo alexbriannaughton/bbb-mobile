@@ -26,4 +26,9 @@ export const TEXT_VARIANTS = {
     fontSize: scaleFont(14),
     lineHeight: scaleHeight(20),
   },
+  tabBar: {
+    color: "textPrimary",
+    fontSize: scaleFont(8),
+    lineHeight: scaleHeight(24),
+  },
 };

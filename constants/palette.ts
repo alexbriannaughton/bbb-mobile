@@ -16,4 +16,5 @@ export const PALETTE = {
   bgTwo: COLORS.blue9,
   bgThree: COLORS.GRAY9,
   bgFour: COLORS.GRAY8,
+  bgFive: COLORS.BLACK
 };
