@@ -38,7 +38,7 @@ export default function SignUp() {
     const { email, password, username } = formData;
     const { data, error } = await signUp(email, password, username);
     if (data) {
-      router.replace("/");
+      router.replace("/(tabs)/(search)/search");
     } else {
       console.log(error);
       if (error?.message) {

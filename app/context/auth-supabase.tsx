@@ -153,7 +153,7 @@ export function Provider(props: ProviderProps) {
       if (signUpResp.error) throw signUpResp.error;
 
       const updateResp = await supabase.auth.updateUser({
-        data: { name: username },
+        data: { username: username },
       });
       if (updateResp.error) throw updateResp.error;
       updateResp.data.user;
